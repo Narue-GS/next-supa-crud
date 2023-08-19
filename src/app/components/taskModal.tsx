@@ -30,7 +30,7 @@ export default function TaskModal(props:TaskModalProps) {
     <>
       <section  onClick={() => props.close()} className="bg-[rgb(0,0,0,0.5)] absolute w-screen h-screen top-0"></section>
       <div className=" absolute min-w-[200px] h-fit bg-white rounded p-3 animate-open-modal">
-        <input onChange={(e) => setUpdatedTask({...props.data, title:e.target.value})} className="border rounded w-full p-2" type="text" defaultValue={props.data.title}/>
+        <input autoFocus={true} onChange={(e) => setUpdatedTask({...props.data, title:e.target.value})} className="border rounded w-full p-2" type="text" defaultValue={props.data.title}/>
         <footer className="flex gap-5">
           <button className="w-full p-2 mt-3 bg-blue-500 hover:bg-blue-700 transition rounded" onClick={() => saveTask()}>Save</button>
           <button className="w-full p-2 mt-3 bg-red-200 hover:bg-red-600 hover:text-white transition rounded" onClick={() => props.delete(props.data.id)}>Delete</button>
