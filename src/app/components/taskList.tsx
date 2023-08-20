@@ -1,9 +1,13 @@
 'use client'
+
 import { useState } from "react";
+
 import { ITask, defaultTask } from "../types";
-import { deleteTask, insertTask, selectOne, selectTasks, updateTask } from "../services";
+import { deleteTask, insertTask, selectOne, updateTask } from "../services";
+
 import Task from "./task";
 import TaskModal from "./taskModal";
+import { Dialog } from '@headlessui/react'
 
 interface TaskListProps {
   list: ITask[]
@@ -60,12 +64,13 @@ export default function TaskList(props:TaskListProps) {
           <button className={`p-2 border rounded-lg ${newTask.title? 'animate-waving-hand border-blue-600 ' : ''}`} onClick={async() => insert(newTask)}>add</button>
         </header>
         <ul className="divide-y border rounded-lg animate-create-task">
-          {list.map((i => (
+          {list.sort((a, b) => (a.id - b.id)).map((i => (
             <Task openModal={() => setSelectedTask(i)}  key={i.id} data={i}/>
           )))}
         </ul>
       </div>
       <TaskModal delete={delete_} close={() => setSelectedTask(defaultTask)} save={save} data={selectedTask}/>
+
     </section>
   )
 }
