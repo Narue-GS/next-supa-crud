@@ -26,8 +26,7 @@ export default function TaskList(props:TaskListProps) {
   const insert = async (task:ITask) => {
     if(task.title) {
       insertTask(newTask)
-      const add = await selectOne(newTask.id)
-      setList([...list, add[0]])
+      setList([...list, newTask])
       setNewTask({
         id: newTask.id + 1,
         title:""
@@ -70,7 +69,6 @@ export default function TaskList(props:TaskListProps) {
         </ul>
       </div>
       <TaskModal delete={delete_} close={() => setSelectedTask(defaultTask)} save={save} data={selectedTask}/>
-
     </section>
   )
 }
